@@ -3,6 +3,14 @@ workflows:
     name: Android APK
     instance_type: linux_x2
     max_build_duration: 30
+    triggering:
+      events:
+        - push
+      branch_patterns:
+        - pattern: main
+          include: true
+          source: true
+      cancel_previous_builds: true
     environment:
       flutter: stable
     scripts:
@@ -28,6 +36,7 @@ workflows:
     name: Android + Web
     instance_type: linux_x2
     max_build_duration: 30
+    # 不设 triggering：需要时在网页点 Start new build，选这条工作流
     environment:
       flutter: stable
     scripts:
